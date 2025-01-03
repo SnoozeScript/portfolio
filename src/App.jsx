@@ -103,11 +103,11 @@ const CONFIG = {
   ],
   projects: [
     {
-      name: "Portfolio Website",
+      name: "Text2Vox",
       description:
-        "Interactive personal portfolio showcasing skills, projects, and professional journey.",
-      tech: ["React", "Framer Motion", "Tailwind CSS"],
-      link: "#",
+        "Text2Vox is a user-friendly text-to-speech (TTS) web application that converts text into natural-sounding audio.",
+      tech: ["React", "huggingface", "text-to-speech"],
+      link: "https://text2-vox.vercel.app",
     },
     {
       name: "OtakuHaven",
@@ -115,6 +115,13 @@ const CONFIG = {
         "Comprehensive platform aggregating anime, movies, and TV shows, providing a seamless entertainment experience.",
       tech: ["React", "JavaScript", "Tailwind CSS"],
       link: "https://otaku-haven-alpha.vercel.app",
+    },
+    {
+      name: "Portfolio Website",
+      description:
+        "Interactive personal portfolio showcasing skills, projects, and professional journey.",
+      tech: ["React", "Framer Motion", "Tailwind CSS"],
+      link: "https://aadilinamdar27.me",
     },
   ],
 };
