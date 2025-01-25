@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Code,
   Palette,
@@ -8,62 +8,21 @@ import {
   MapPin,
   Mail,
   ExternalLink,
-  Rss,
+  X,
   Bot,
+  Sun,
+  Moon,
+  ArrowUp,
+  GraduationCap,
 } from "lucide-react";
 
-// Improved and more modular animation configurations
-const animations = {
-  container: {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  },
-  item: {
-    hidden: {
-      y: 50,
-      opacity: 0,
-      scale: 0.9,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3 },
-    },
-  },
-  page: {
-    initial: { opacity: 0, x: "-100%" },
-    in: { opacity: 1, x: 0 },
-    out: { opacity: 0, x: "100%" },
-  },
-  pageTransition: {
-    type: "tween",
-    ease: "anticipate",
-    duration: 0.5,
-  },
-};
-
-// Centralized configuration for easier maintenance
+// Centralized configuration
 const CONFIG = {
   name: "Aadil Inamdar",
   tagline:
-    "Full-stack developer and creative technologist passionate about building innovative digital experiences that blend cutting-edge technology with elegant, user-centric design.",
+    "Quick learner | Passionate about technology | Web Developer | Machine Learning | Games",
   location: "Kolhapur, Maharashtra, India",
-  email: "aadilinamdar27@gmail.com",
+  email: "contact@aadilinamdar27.me",
   socialLinks: [
     {
       Icon: Linkedin,
@@ -76,9 +35,9 @@ const CONFIG = {
       label: "GitHub",
     },
     {
-      Icon: Rss,
-      link: "https://blog.aadilinamdar.com",
-      label: "Blog",
+      Icon: X,
+      link: "https://twitter.com/snoozescript",
+      label: "Twitter",
     },
   ],
   skills: [
@@ -92,27 +51,66 @@ const CONFIG = {
       name: "UI/UX Design",
       Icon: Palette,
       description:
-        "Designing intuitive and visually appealing user interfaces that enhance user experience.",
+        "Designing intuitive and visually appealing user interfaces.",
     },
     {
       name: "Machine Learning",
       Icon: Bot,
+      description: "Building intelligent systems using data-driven models.",
+    },
+  ],
+  experience: [
+    {
+      company: "Microsoft Learn Student's Club - SGU",
+      role: "Technical Lead",
+      duration: "Oct 2024 - Present",
       description:
-        "Building intelligent systems using data-driven models to predict, classify, and optimize solutions.",
+        "Leading a team to build innovative projects and conduct workshops.",
+    },
+    {
+      company: "Synfuse",
+      role: "Freelance Developer",
+      duration: "Jan 2023 - Present",
+      description:
+        "Developing web applications and websites for clients across the globe.",
+    },
+  ],
+  education: [
+    {
+      institution: "Sanjay Ghodawat University",
+      degree:
+        "Bachelor of Technology in Artificial Intelligence & Machine Learning",
+      duration: "2023 - 2026",
+      description:
+        "Pursuing a degree in artificial intelligence and machine learning.",
+    },
+    {
+      institution: "Dr. D. Y. Patil Polytechnic, Kasaba Bawada",
+      degree: "Diploma in Computer Engineering",
+      duration: "2021 - 2023",
+      description:
+        "Completed a diploma in computer engineering with distinction.",
+    },
+    {
+      institution: "Chate School & Junior College Of Science",
+      degree: "Higher Secondary Education",
+      duration: "2019 - 2021",
+      description:
+        "Completed higher secondary education with a focus on science.",
     },
   ],
   projects: [
     {
       name: "Text2Vox",
       description:
-        "Text2Vox is a user-friendly text-to-speech (TTS) web application that converts text into natural-sounding audio.",
+        "A text-to-speech web application that converts text into natural-sounding audio.",
       tech: ["React", "huggingface", "text-to-speech"],
       link: "https://text2-vox.vercel.app",
     },
     {
       name: "OtakuHaven",
       description:
-        "Comprehensive platform aggregating anime, movies, and TV shows, providing a seamless entertainment experience.",
+        "A platform aggregating anime, movies, and TV shows for a seamless entertainment experience.",
       tech: ["React", "JavaScript", "Tailwind CSS"],
       link: "https://otaku-haven-alpha.vercel.app",
     },
@@ -126,285 +124,287 @@ const CONFIG = {
   ],
 };
 
-function SocialLinks() {
-  return (
-    <div className="flex justify-center space-x-6">
-      {CONFIG.socialLinks.map(({ Icon, link, label }, index) => (
-        <motion.a
-          key={index}
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label}
-          whileHover={{
-            scale: 1.2,
-            rotate: 5,
-            transition: { duration: 0.2 },
-          }}
-          whileTap={{ scale: 0.9 }}
-          className="text-white hover:text-purple-200 group relative"
-        >
-          <Icon size={32} strokeWidth={1.5} />
-          <span
-            className="absolute bottom-full left-1/2 -translate-x-1/2 
-            bg-white/20 text-white text-xs px-2 py-1 rounded-md 
-            opacity-0 group-hover:opacity-100 transition-opacity 
-            duration-300 pointer-events-none"
-          >
-            {label}
-          </span>
-        </motion.a>
-      ))}
-    </div>
-  );
-}
-
-function Hero() {
-  const [activeTab, setActiveTab] = useState("about");
-  const tabs = useMemo(() => ["about", "skills", "projects"], []);
-
-  const renderSkills = useCallback(() => {
-    return CONFIG.skills.map((skill, index) => {
-      const SkillIcon = skill.Icon;
-      return (
-        <motion.div
-          key={index}
-          variants={animations.item}
-          whileHover="hover"
-          className="bg-white/10 p-8 rounded-2xl text-center 
-          border border-white/10 backdrop-blur-sm 
-          transform transition-all duration-300 
-          hover:border-purple-300/50 hover:shadow-2xl
-          group relative overflow-hidden"
-        >
-          <motion.div
-            initial={{ rotate: 0 }}
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 flex items-center justify-center"
-          >
-            <SkillIcon
-              size={64}
-              className="text-white/80 stroke-[1.5] 
-              group-hover:text-purple-300 transition-colors"
-            />
-          </motion.div>
-          <p
-            className="text-white font-semibold text-lg 
-            group-hover:text-purple-200 transition-colors mb-2"
-          >
-            {skill.name}
-          </p>
-          <p className="text-white/70 text-sm">{skill.description}</p>
-          <div
-            className="absolute inset-0 bg-gradient-to-br 
-            from-transparent to-purple-900/10 
-            opacity-0 group-hover:opacity-100 
-            transition-opacity duration-300 pointer-events-none"
-          ></div>
-        </motion.div>
-      );
-    });
-  }, []);
-
-  const renderProjects = useCallback(() => {
-    return CONFIG.projects.map((project, index) => (
-      <motion.div
-        key={index}
-        variants={animations.item}
-        whileHover="hover"
-        className="bg-white/10 p-6 rounded-2xl 
-          border border-white/10 backdrop-blur-sm 
-          transform transition-all duration-300 
-          hover:border-purple-300/50 hover:shadow-2xl
-          group relative"
-      >
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="text-2xl font-bold text-white">{project.name}</h3>
-          <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            className="text-white/50 hover:text-white"
-          >
-            <ExternalLink size={20} />
-          </motion.a>
-        </div>
-        <p className="text-white/70 mb-4 text-base leading-relaxed">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {project.tech.map((tech, techIndex) => (
-            <motion.span
-              key={techIndex}
-              initial={{ opacity: 0.7 }}
-              whileHover={{ scale: 1.1, opacity: 1 }}
-              className="px-3 py-1 bg-white/20 text-white 
-                rounded-full text-xs font-medium 
-                transition-all duration-300 
-                hover:bg-white/30"
-            >
-              {tech}
-            </motion.span>
-          ))}
-        </div>
-        <div
-          className="absolute inset-0 
-          border-2 border-transparent group-hover:border-purple-300/30 
-          rounded-2xl pointer-events-none transition-all duration-300"
-        ></div>
-      </motion.div>
-    ));
-  }, []);
-
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={animations.container}
-      className="min-h-screen bg-gradient-to-br from-indigo-950 to-purple-900 
-        flex items-center justify-center overflow-hidden relative"
-    >
-      {/* Enhanced Background Glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute -top-20 -left-20 w-96 h-96 
-          bg-purple-600/20 rounded-full blur-3xl animate-pulse 
-          opacity-50 dark:opacity-30"
-        ></div>
-        <div
-          className="absolute -bottom-20 -right-20 w-96 h-96 
-          bg-indigo-600/20 rounded-full blur-3xl animate-pulse 
-          opacity-50 dark:opacity-30"
-        ></div>
-      </div>
-
-      <div className="max-w-5xl mx-auto text-center px-6 relative z-10">
-        <motion.h1
-          variants={animations.item}
-          className="text-7xl font-extrabold text-white mb-8 
-            tracking-tighter drop-shadow-2xl 
-            bg-clip-text text-transparent 
-            bg-gradient-to-r from-purple-300 to-indigo-400"
-        >
-          {CONFIG.name}
-        </motion.h1>
-
-        <motion.div
-          variants={animations.item}
-          className="flex justify-center space-x-4 mb-12"
-        >
-          {tabs.map((tab) => (
-            <motion.button
-              key={tab}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveTab(tab)}
-              aria-selected={activeTab === tab}
-              className={`
-                px-6 py-3 rounded-full text-sm uppercase tracking-wider 
-                font-bold transition-all duration-300 relative
-                ${
-                  activeTab === tab
-                    ? "bg-white text-indigo-900 shadow-2xl"
-                    : "text-white border-2 border-white/30 hover:bg-white/10"
-                }
-                group
-              `}
-            >
-              {tab}
-              {activeTab === tab && (
-                <motion.span
-                  layoutId="tab-underline"
-                  className="absolute bottom-1 left-0 right-0 h-1 
-                    bg-indigo-600 rounded-full mx-auto w-2/3"
-                />
-              )}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        <AnimatePresence mode="wait">
-          {activeTab === "about" && (
-            <motion.div
-              key="about"
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={animations.page}
-              transition={animations.pageTransition}
-            >
-              <motion.p
-                variants={animations.item}
-                className="text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed"
-              >
-                {CONFIG.tagline}
-              </motion.p>
-              <motion.div
-                variants={animations.item}
-                className="flex justify-center space-x-6 mt-8"
-              >
-                <SocialLinks />
-              </motion.div>
-            </motion.div>
-          )}
-
-          {activeTab === "skills" && (
-            <motion.div
-              key="skills"
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={animations.page}
-              transition={animations.pageTransition}
-              className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto"
-            >
-              {renderSkills()}
-            </motion.div>
-          )}
-
-          {activeTab === "projects" && (
-            <motion.div
-              key="projects"
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={animations.page}
-              transition={animations.pageTransition}
-              className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-            >
-              {renderProjects()}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Enhanced Contact Info */}
-        <motion.div
-          variants={animations.item}
-          className="mt-12 flex items-center justify-center 
-            space-x-4 text-white/70 bg-white/10 
-            px-6 py-3 rounded-full backdrop-blur-sm"
-        >
-          <div className="flex items-center space-x-2">
-            <MapPin size={20} className="text-purple-300" />
-            <span>{CONFIG.location}</span>
-          </div>
-          <div className="h-6 w-px bg-white/30"></div>
-          <div className="flex items-center space-x-2">
-            <Mail size={20} className="text-purple-300" />
-            <span>{CONFIG.email}</span>
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
-
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [showButton, setShowButton] = useState(false);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  // Show/hide "Back to Top" button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="bg-gray-950">
-      <Hero />
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-white dark:bg-gradient-to-br dark:from-gray-950 dark:to-blue-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+        {/* Dark Mode Toggle Button */}
+        <button
+          onClick={toggleDarkMode}
+          className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 z-50"
+        >
+          {darkMode ? (
+            <Sun size={24} className="text-yellow-400" />
+          ) : (
+            <Moon size={24} className="text-gray-800" />
+          )}
+        </button>
+
+        {/* Name and Contact Details */}
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-bold mb-4"
+          >
+            {CONFIG.name}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg text-gray-600 dark:text-gray-300 mb-8"
+          >
+            {CONFIG.tagline}
+          </motion.p>
+          <div className="flex flex-col space-y-4">
+            <div className="flex items-center space-x-2">
+              <MapPin size={20} className="text-gray-600 dark:text-gray-300" />
+              <span className="text-gray-600 dark:text-gray-300">
+                {CONFIG.location}
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Mail size={20} className="text-gray-600 dark:text-gray-300" />
+              <span className="text-gray-600 dark:text-gray-300">
+                {CONFIG.email}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100"
+          >
+            Skills
+          </motion.h2>
+          <div className="flex flex-wrap gap-4">
+            {[
+              "React.js",
+              "Supabase",
+              "Tailwind CSS",
+              "Node.js",
+              "Firebase",
+              "MongoDB",
+            ].map((skill, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 cursor-default"
+              >
+                {skill}
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-3xl font-bold mb-8"
+          >
+            Experience
+          </motion.h2>
+          <div className="space-y-6">
+            {CONFIG.experience.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.2 }}
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  {exp.role} · {exp.company}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                  {exp.duration}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {exp.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Education Section with Timeline */}
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-3xl font-bold mb-8"
+          >
+            Education
+          </motion.h2>
+          <div className="space-y-8 relative">
+            {/* Timeline Line */}
+            <div className="absolute left-4 top-0 h-full w-px bg-gray-300 dark:bg-gray-700"></div>
+            {CONFIG.education.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.2 }}
+                className="flex items-start space-x-6"
+              >
+                {/* Timeline Icon */}
+                <div className="relative z-10">
+                  <div className="p-2 bg-blue-600 dark:bg-blue-400 rounded-full text-white">
+                    <GraduationCap size={20} />
+                  </div>
+                </div>
+                {/* Education Details */}
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                    {edu.institution} · {edu.duration}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {edu.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-3xl font-bold mb-8"
+          >
+            Projects
+          </motion.h2>
+          <div className="space-y-6">
+            {CONFIG.projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.2 }}
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                    {project.name}
+                  </h3>
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <ExternalLink size={20} />
+                  </motion.a>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, techIndex) => (
+                    <motion.span
+                      key={techIndex}
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ scale: 1.1, opacity: 1 }}
+                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full text-xs font-medium"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex justify-center space-x-6">
+            {CONFIG.socialLinks.map(({ Icon, link, label }, index) => (
+              <motion.a
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              >
+                <Icon size={24} strokeWidth={1.5} />
+              </motion.a>
+            ))}
+          </div>
+          {/* Copyright Line */}
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+            &copy; {new Date().getFullYear()} {CONFIG.name}. All rights
+            reserved.
+          </p>
+        </footer>
+
+        {/* Back to Top Button */}
+        {showButton && (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 p-3 bg-blue-600 dark:bg-blue-400 text-white rounded-full shadow-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-all duration-300"
+          >
+            <ArrowUp size={24} />
+          </motion.button>
+        )}
+      </div>
     </div>
   );
 }
