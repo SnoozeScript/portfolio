@@ -8,12 +8,13 @@ import {
   MapPin,
   Mail,
   ExternalLink,
-  X,
+  Twitter,
   Bot,
   Sun,
   Moon,
   ArrowUp,
   GraduationCap,
+  FileCode,
 } from "lucide-react";
 
 // Centralized configuration
@@ -35,9 +36,14 @@ const CONFIG = {
       label: "GitHub",
     },
     {
-      Icon: X,
+      Icon: Twitter,
       link: "https://twitter.com/snoozescript",
       label: "Twitter",
+    },
+    {
+      Icon: FileCode,
+      link: "https://dochub.aadilinamdar27.me",
+      label: "Docs",
     },
   ],
   skills: [
@@ -216,9 +222,11 @@ function App() {
           </motion.h2>
           <div className="flex flex-wrap gap-4">
             {[
+              "JavaScript",
               "React.js",
-              "Supabase",
               "Tailwind CSS",
+              "Python",
+              "Supabase",
               "Node.js",
               "Firebase",
               "MongoDB",
