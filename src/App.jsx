@@ -16,6 +16,10 @@ import {
   GraduationCap,
   FileCode,
 } from "lucide-react";
+import SplashCursor from './components/SplashCursor'
+
+
+
 
 // Centralized configuration
 const CONFIG = {
@@ -162,9 +166,12 @@ function App() {
   };
 
   return (
+    
     <div className={darkMode ? "dark" : ""}>
+      
       <div className="min-h-screen bg-white dark:bg-gradient-to-br dark:from-gray-950 dark:to-blue-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         {/* Dark Mode Toggle Button */}
+        <SplashCursor />
         <button
           onClick={toggleDarkMode}
           className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 z-50"
