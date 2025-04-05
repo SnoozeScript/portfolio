@@ -17,7 +17,7 @@ import {
 
 const CONFIG = {
   name: "Aadil Inamdar",
-  title: "AI/ML Student & Web Developer",
+  title: "404: Motivation not found. Napping instead.",
   tagline: "Building intelligent systems and web experiences",
   location: "Kolhapur, Maharashtra, India",
   email: "contact@aadilinamdar27.me",
