@@ -225,7 +225,7 @@ function App() {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative">
+      <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-100 transition-colors duration-300 relative overflow-x-hidden">
         {/* Enhanced Full Screen Background Grid */}
         <div className="fixed inset-0 opacity-60 dark:opacity-50 pointer-events-none z-0 overflow-hidden">
           {/* Single Grid System */}
@@ -426,7 +426,7 @@ function App() {
         </nav>
 
         {/* Hero Section */}
-        <section id="home" className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 overflow-hidden z-10">
+        <section id="home" className="relative max-w-6xl mx-auto px-4 md:px-6 pt-32 pb-20 z-10">
           {/* Enhanced Multi-Layer Glow System */}
           <div className="absolute inset-0">
             {/* Primary Central Glow */}
@@ -551,7 +551,7 @@ function App() {
         </section>
 
         {/* Skills Section - Enhanced Design */}
-        <section id="skills" className="max-w-6xl mx-auto px-6 py-20">
+        <section id="skills" className="max-w-6xl mx-auto px-4 md:px-6 py-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -732,7 +732,7 @@ function App() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="max-w-6xl mx-auto px-6 py-20">
+        <section id="experience" className="max-w-6xl mx-auto px-4 md:px-6 py-20">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -788,7 +788,7 @@ function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="max-w-6xl mx-auto px-6 py-20">
+        <section id="projects" className="max-w-6xl mx-auto px-4 md:px-6 py-20">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -980,7 +980,7 @@ function App() {
         </section>
 
         {/* Education Timeline - New Modern Design */}
-        <section id="education" className="max-w-6xl mx-auto px-6 py-20">
+        <section id="education" className="max-w-6xl mx-auto px-4 md:px-6 py-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
