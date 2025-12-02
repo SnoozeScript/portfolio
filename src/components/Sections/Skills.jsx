@@ -1,16 +1,8 @@
 import { motion } from 'framer-motion';
-
+import { CONFIG } from '../../data/config';
 import SectionHeading from '../UI/SectionHeading';
 
 const Skills = () => {
-    // Group skills into categories for a cleaner layout
-    const skillCategories = {
-        "Frontend": ["React.js", "JavaScript", "TypeScript", "Tailwind CSS", "HTML/CSS"],
-        "Backend": ["Node.js", "Python", "Firebase", "MongoDB"],
-        "AI / ML": ["Machine Learning", "TensorFlow", "LangChain", "LLM Gen AI"],
-        "Tools": ["Git", "GitHub", "VS Code", "Postman"]
-    };
-
     return (
         <section id="skills" className="max-w-7xl mx-auto px-4 md:px-6 py-20">
             <SectionHeading
@@ -19,7 +11,7 @@ const Skills = () => {
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {Object.entries(skillCategories).map(([category, skills], categoryIndex) => (
+                {Object.entries(CONFIG.skills).map(([category, skills], categoryIndex) => (
                     <motion.div
                         key={category}
                         initial={{ opacity: 0, y: 20 }}

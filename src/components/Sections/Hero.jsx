@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { MapPin, Mail, ArrowRight } from 'lucide-react';
+import { Code, FileText, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { CONFIG } from '../../data/config';
 import TechGlobe from '../UI/TechGlobe';
 
@@ -30,16 +31,16 @@ const Hero = () => {
                         </span>
                     </motion.div>
 
-                    {/* Main Heading */}
+                    {/* Name Heading */}
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight"
+                        transition={{ duration: 0.5, delay: 0.05 }}
+                        className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6"
                     >
-                        Crafting <br />
+                        Hi, I&apos;m <br className="md:hidden" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                            Digital Intelligence
+                            {CONFIG.name}
                         </span>
                     </motion.h1>
 
@@ -48,9 +49,23 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-xl mb-8 leading-relaxed"
+                        className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-xl mb-8 leading-relaxed whitespace-pre-line"
                     >
-                        {CONFIG.about}
+                        {CONFIG.about.split("Microsoft Learn Student Club").map((part, index, array) => (
+                            <span key={index}>
+                                {part}
+                                {index < array.length - 1 && (
+                                    <a
+                                        href="https://sgumlsc.in/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                                    >
+                                        Microsoft Learn Student Club
+                                    </a>
+                                )}
+                            </span>
+                        ))}
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -58,22 +73,18 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="flex flex-wrap gap-4 mb-12"
+                        className="flex flex-col items-start gap-6 mb-12"
                     >
-                        <a
-                            href="#projects"
-                            className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium flex items-center gap-2 hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
+                        <Link
+                            to="/resume"
+                            className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2 hover:gap-3 transition-all group"
                         >
-                            View Work
-                            <ArrowRight size={18} />
-                        </a>
-                        <a
-                            href={`mailto:${CONFIG.email}`}
-                            className="px-8 py-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors border border-gray-200 dark:border-gray-700"
-                        >
-                            Contact Me
-                            <Mail size={18} />
-                        </a>
+                            Resume <FileText size={20} className="group-hover:text-blue-600 transition-colors" />
+                        </Link>
+
+                        <div className="text-lg text-gray-600 dark:text-gray-400 font-medium">
+                            Contact: <a href={`mailto:${CONFIG.email}`} className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-b border-gray-300 dark:border-gray-700 hover:border-blue-600 dark:hover:border-blue-400">{CONFIG.email}</a>
+                        </div>
                     </motion.div>
 
                     {/* Social Stats / Links */}

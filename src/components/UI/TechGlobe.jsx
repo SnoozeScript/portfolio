@@ -88,7 +88,7 @@ const Cloud = ({ radius = 20, isDarkMode }) => {
         }
 
         const interval = setInterval(() => {
-            const count = CONFIG.skills.length;
+            const count = Object.values(CONFIG.skills).flat().length;
             // Select 3 random words
             const indices = [];
             for (let i = 0; i < 5; i++) {
@@ -117,7 +117,7 @@ const Cloud = ({ radius = 20, isDarkMode }) => {
     });
 
     const { words, connections, activeConnectionIndices } = useMemo(() => {
-        const skills = CONFIG.skills;
+        const skills = Object.values(CONFIG.skills).flat();
         const count = skills.length;
         const tempWords = [];
         const phi = Math.PI * (3 - Math.sqrt(5));

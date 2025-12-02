@@ -5,12 +5,14 @@ import './index.css';
 import App from './App.jsx';
 
 
+import ResumePage from './pages/ResumePage';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-
+        <Route path="/resume" element={<ResumePage />} />
       </Routes>
     </Router>
   </StrictMode>,

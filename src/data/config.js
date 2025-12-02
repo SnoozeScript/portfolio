@@ -4,13 +4,21 @@ import {
   FileCode,
 } from "lucide-react";
 import { FaXTwitter,FaWhatsapp } from "react-icons/fa6";
+import farmgeniusPreview from "../assets/images/projects/farmgeniusPreview.png";
+import chatassistantPreview from "../assets/images/projects/chatassistantPreview.png";
+import otakuhavenPreview from "../assets/images/projects/otakuhavenPreview.png";
+import text2voxPreview from "../assets/images/projects/text2voxPreview.png";
 
 export const CONFIG = {
   name: "Aadil Inamdar",
   tagline: "Building Intelligent Systems & Scalable Web Solutions",
   location: "Kolhapur, Maharashtra, India",
   email: "aadilinamdar27@gmail.com",
-  about: "I engineer intelligent systems that bridge the gap between complex AI algorithms and intuitive human experiences. As an AI/ML Engineer and Full-Stack Developer, I specialize in crafting scalable multi-agent architectures, next-gen generative AI applications, and responsive digital platforms. Driven by innovation, I transform abstract concepts into tangible, high-impact solutions.",
+  phone: "+91 9011156314",
+  about: `I am pursuing my B.Tech in Artificial Intelligence & Machine Learning at Sanjay Ghodawat University, where I serve as the Technical Head at Microsoft Learn Student Club and co-lead the 'Cubicles' Tech Initiative. Before that, I received a Diploma in Computer Engineering from Dr. D. Y. Patil Polytechnic in 2023, graduating with distinction.
+
+I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Freelance Developer at Prismas (2025), delivering custom web solutions; and a Full Stack Developer at Synfuse (2023-2025), building scalable applications for diverse clients.`,
+  resumeSummary: `I am pursuing my B.Tech in Artificial Intelligence & Machine Learning at Sanjay Ghodawat University, where I serve as the Technical Head at Microsoft Learn Student Club. Before that, I received a Diploma in Computer Engineering from Dr. D. Y. Patil Polytechnic in 2023. I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Freelance Developer at Prismas (2025); and a Full Stack Developer at Synfuse (2023-2025). I enjoy participating in hackathons and building intelligent systems.`,
   socialLinks: [
     {
       Icon: Linkedin,
@@ -39,12 +47,12 @@ export const CONFIG = {
     },
 
   ],
-  skills: [
-    "JavaScript", "Python", "React.js",
-    "Node.js", "TensorFlow", "Tailwind CSS",
-    "Firebase", "MongoDB", "Git",
-    "LangChain", "LLM Gen AI", "Machine Learning"
-  ],
+  skills: {
+    "Frontend": ["React.js", "JavaScript", "TypeScript", "Tailwind CSS", "HTML/CSS"],
+    "Backend": ["Node.js", "Python", "Firebase", "MongoDB"],
+    "AI / ML": ["Machine Learning", "TensorFlow", "LangChain", "LLM Gen AI"],
+    "Tools": ["Git", "GitHub", "VS Code", "Postman", "Linux"]
+  },
   experience: [
     {
       company: "Anthaathi",
@@ -52,9 +60,9 @@ export const CONFIG = {
       role: "Software Developer intern",
       duration: "Jul 2025 - Present",
       highlights: [
-        "Developing responsive and interactive user interfaces using React.js and Flutter.",
-        "Collaborating with cross-functional teams to deliver seamless web and mobile experiences.",
-        "Optimizing frontend performance and ensuring cross-browser compatibility."
+        "Developing high-performance, responsive user interfaces using React.js and Flutter.",
+        "Collaborating with cross-functional teams to deliver seamless experiences.",
+        "Optimizing frontend performance to ensure cross-browser compatibility."
       ],
     },
     {
@@ -62,9 +70,9 @@ export const CONFIG = {
       role: "Freelance Developer",
       duration: "Apr 2025 - Jun 2025",
       highlights: [
-        "Delivered custom web solutions tailored to client business needs.",
+        "Delivered custom web solutions tailored to business needs.",
         "Implemented secure authentication and real-time database integrations.",
-        "Ensured 100% client satisfaction through transparent communication and timely delivery."
+        "Managed project lifecycles, ensuring 100% client satisfaction."
       ],
     },
     {
@@ -72,9 +80,9 @@ export const CONFIG = {
       role: "Full Stack Developer (Freelance)",
       duration: "Jan 2023 - Mar 2025",
       highlights: [
-        "Developed and deployed full-stack applications for a diverse client base.",
-        "Utilized modern frameworks like React and Node.js to build responsive interfaces.",
-        "Maintained long-term partnerships with clients, resulting in repeat business."
+        "Developed and deployed scalable full-stack applications.",
+        "Used modern frameworks like React and Node.js to build responsive interfaces.",
+        "Maintained long-term client partnerships resulting in repeat business."
       ],
     },
   ],
@@ -82,10 +90,10 @@ export const CONFIG = {
     {
       institution: "Sanjay Ghodawat University",
       degree: "B.Tech in Artificial Intelligence & Machine Learning",
-      duration: "2023 - 2026",
+      duration: "2023 - Present",
       achievements: [
         "Specializing in Deep Learning and Natural Language Processing.",
-        "Active contributor to the Microsoft Learn Student Club.",
+        "Technical Head at Microsoft Learn Student Club ",
         "Lead Organizer for the 'Cubicles' Tech Initiative."
       ],
     },
@@ -110,35 +118,8 @@ export const CONFIG = {
   ],
   projects: [
     {
-      name: "FarmGenius",
-      description:
-        "A comprehensive agricultural platform empowering Indian farmers with AI-driven insights. Features a multi-agent system for disease diagnosis, real-time market price forecasting, and personalized crop recommendations.",
-      tech: ["React", "FastAPI", "Python", "Gemini API", "Google Maps", "TailwindCSS"],
-      link: "https://404-snowy.vercel.app",
-      github: "https://github.com/SnoozeScript/404",
-      highlights: [
-        "Engineered a multi-agent system using LangChain for specialized tasks.",
-        "Integrated computer vision for instant crop disease detection with 95% accuracy.",
-        "Implemented real-time data scraping from AgMarkNet for accurate price trends.",
-        "Developed a location-aware chatbot providing localized farming advice."
-      ]
-    },
-    {
-      name: "Chat Assistant",
-      description:
-        "A versatile AI chat interface enabling users to interact with multiple Large Language Models. Designed for speed and flexibility, it supports context-aware conversations and model switching on the fly.",
-      tech: ["Python", "GroqCloud API", "Streamlit", "LangChain"],
-      link: "https://snoozescript-chat.streamlit.app",
-      github: "https://github.com/SnoozeScript/ChatAssistant",
-      highlights: [
-        "Integrated GroqCloud API for ultra-low latency responses.",
-        "Implemented seamless model switching between Llama 3, Mixtral, and Gemma.",
-        "Built a persistent memory system to maintain conversation context.",
-        "Designed a clean, intuitive UI using Streamlit for rapid deployment."
-      ]
-    },
-    {
       name: "OtakuHaven",
+      image: otakuhavenPreview,
       description:
         "An immersive entertainment discovery platform for anime and movie enthusiasts. Provides personalized recommendations, detailed metadata, and social features for tracking watch history.",
       tech: ["React", "TMDB API", "Firebase", "Framer Motion"],
@@ -152,7 +133,38 @@ export const CONFIG = {
       ]
     },
     {
+      name: "FarmGenius",
+      image: farmgeniusPreview,
+      description:
+        "A comprehensive agricultural platform empowering Indian farmers with AI-driven insights. Features a multi-agent system for disease diagnosis, real-time market price forecasting, and personalized crop recommendations.",
+      tech: ["React", "FastAPI", "Python", "Gemini API", "Google Maps", "TailwindCSS"],
+      link: "https://404-snowy.vercel.app",
+      github: "https://github.com/SnoozeScript/404",
+      highlights: [
+        "Engineered a multi-agent system using LangChain for specialized tasks.",
+        "Integrated computer vision for instant crop disease detection with good accuracy.",
+        "Implemented real-time data scraping from AgMarkNet for accurate price trends.",
+        "Developed a location-aware chatbot providing localized farming advice."
+      ]
+    },
+    {
+      name: "Chat Assistant",
+      image: chatassistantPreview,
+      description:
+        "A versatile AI chat interface enabling users to interact with multiple Large Language Models. Designed for speed and flexibility, it supports context-aware conversations and model switching on the fly.",
+      tech: ["Python", "GroqCloud API", "Streamlit", "LangChain"],
+      link: "https://snoozescript-chat.streamlit.app",
+      github: "https://github.com/SnoozeScript/ChatAssistant",
+      highlights: [
+        "Integrated GroqCloud API for ultra-low latency responses.",
+        "Implemented seamless model switching between Llama 3, Mixtral, and Gemma.",
+        "Built a persistent memory system to maintain conversation context.",
+        "Designed a clean, intuitive UI using Streamlit for rapid deployment."
+      ]
+    },
+    {
       name: "Text2Vox",
+      image: text2voxPreview,
       description:
         "A browser-based text-to-speech tool harnessing the power of HuggingFace models. Allows users to generate natural-sounding speech from text with customizable voice parameters.",
       tech: ["React", "HuggingFace API", "Web Audio API"],
@@ -166,16 +178,54 @@ export const CONFIG = {
       ]
     }
   ],
-  certifications: [
+  resumeProjects: [
     {
-      name: "Google Cloud Fundamentals: Core Infrastructure",
-      issuer: "Google Cloud",
-      date: "2023",
+      name: "OtakuHaven",
+      tech: ["React", "TMDB API", "Firebase", "Framer Motion"],
+      description:
+        "An immersive entertainment discovery platform providing personalized recommendations, detailed metadata, and social features for tracking watch history.",
+      highlights: [
+        "Leveraged TMDB API to fetch extensive metadata for thousands of titles.",
+        "Implemented secure user authentication and cloud storage using Firebase.",
+        "Created a dynamic, responsive UI with smooth transitions and animations.",
+        "Developed a recommendation engine based on user preferences and viewing history."
+      ]
     },
     {
-      name: "Machine Learning Specialization",
-      issuer: "DeepLearning.AI (Coursera)",
-      date: "2022",
+      name: "FarmGenius",
+      tech: ["React", "FastAPI", "Python", "Gemini API", "Google Maps", "TailwindCSS"],
+      description:
+        "A comprehensive agricultural platform empowering farmers with AI-driven insights, disease diagnosis, and real-time market price forecasting.",
+      highlights: [
+        "Engineered a multi-agent system using LangChain for specialized tasks.",
+        "Integrated computer vision for instant crop disease detection with good accuracy.",
+        "Implemented real-time data scraping from AgMarkNet for accurate price trends.",
+        "Developed a location-aware chatbot providing localized farming advice."
+      ]
     },
+    {
+      name: "Chat Assistant",
+      tech: ["Python", "GroqCloud API", "Streamlit", "LangChain"],
+      description:
+        "A versatile AI chat interface enabling interaction with multiple LLMs, supporting context-aware conversations and instant model switching.",
+      highlights: [
+        "Integrated GroqCloud API for ultra-low latency responses.",
+        "Implemented seamless model switching between Llama 3, Mixtral, and Gemma.",
+        "Built a persistent memory system to maintain conversation context.",
+        "Designed a clean, intuitive UI using Streamlit for rapid deployment."
+      ]
+    },
+    {
+      name: "Text2Vox",
+      tech: ["React", "HuggingFace API", "Web Audio API"],
+      description:
+        "A browser-based text-to-speech tool using HuggingFace models to generate natural-sounding speech with customizable voice parameters.",
+      highlights: [
+        "Integrated state-of-the-art TTS models from HuggingFace Inference API.",
+        "Utilized Web Audio API for real-time audio processing and playback.",
+        "Implemented a user-friendly interface for adjusting pitch, speed, and voice style.",
+        "Enabled direct download of generated audio files for offline use."
+      ]
+    }
   ],
 };

@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { HiMenuAlt4 } from "react-icons/hi";
 import ThemeToggle from '../UI/ThemeToggle';
 import PropTypes from 'prop-types';
+import { CONFIG } from '../../data/config';
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,7 +41,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                         className="flex items-center space-x-2 shrink-0"
                     >
                         <span className="font-bold text-lg bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-                            💤SnoozeScript
+                            {CONFIG.name}
                         </span>
                     </motion.div>
 
