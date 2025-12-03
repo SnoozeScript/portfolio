@@ -17,8 +17,8 @@ export const CONFIG = {
   phone: "+91 9011156314",
   about: `I am pursuing my B.Tech in Artificial Intelligence & Machine Learning at Sanjay Ghodawat University, where I serve as the Technical Head at Microsoft Learn Student Club and co-lead the 'Cubicles' Tech Initiative. Before that, I received a Diploma in Computer Engineering from Dr. D. Y. Patil Polytechnic in 2023, graduating with distinction.
 
-I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Freelance Developer at Prismas (2025), delivering custom web solutions; and a Full Stack Developer at Synfuse (2023-2025), building scalable applications for diverse clients.`,
-  resumeSummary: `I am pursuing my B.Tech in Artificial Intelligence & Machine Learning at Sanjay Ghodawat University, where I serve as the Technical Head at Microsoft Learn Student Club. Before that, I received a Diploma in Computer Engineering from Dr. D. Y. Patil Polytechnic in 2023. I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Freelance Developer at Prismas (2025); and a Full Stack Developer at Synfuse (2023-2025). I enjoy participating in hackathons and building intelligent systems.`,
+I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Software Developer at Prismas (2025), delivering custom web solutions; and a Full Stack Developer at Synfuse (2023-2025), building scalable applications for diverse clients.`,
+  resumeSummary: `I am pursuing my B.Tech in Artificial Intelligence & Machine Learning at Sanjay Ghodawat University, where I serve as the Technical Head at Microsoft Learn Student Club. Before that, I received a Diploma in Computer Engineering from Dr. D. Y. Patil Polytechnic in 2023. I am currently a Software Developer Intern at Anthaathi (2025-Present); previously, a Software Developer at Prismas (2025); and a Full Stack Developer at Synfuse (2023-2025). I enjoy participating in hackathons and building intelligent systems.`,
   socialLinks: [
     {
       Icon: Linkedin,
@@ -67,8 +67,8 @@ I am currently a Software Developer Intern at Anthaathi (2025-Present); previous
     },
     {
       company: "Prismas",
-      role: "Freelance Developer",
-      duration: "Apr 2025 - Jun 2025",
+      role: "Software Developer",
+      duration: "Mar 2025 - Present",
       highlights: [
         "Delivered custom web solutions tailored to business needs.",
         "Implemented secure authentication and real-time database integrations.",
@@ -78,7 +78,7 @@ I am currently a Software Developer Intern at Anthaathi (2025-Present); previous
     {
       company: "Synfuse",
       role: "Full Stack Developer (Freelance)",
-      duration: "Jan 2023 - Mar 2025",
+      duration: "Jan 2023 - Feb 2025",
       highlights: [
         "Developed and deployed scalable full-stack applications.",
         "Used modern frameworks like React and Node.js to build responsive interfaces.",
